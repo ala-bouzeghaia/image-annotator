@@ -165,12 +165,9 @@ const DisplayAnnotationsBox = () => {
     }; */
   console.log("bboxes", bboxes);
   return (
-    <div
-      ref={refDiv}
-      className="col-sm-9 col-sm-offset-3 col-md-7 col-md-offset-2 main"
-    >
+    <div ref={refDiv}>
       <h5>Images to annotate: </h5>
-      <div style={{ width: "500px", height: "400px" }}>
+      <div style={{ height: "400px" }}>
         {/*  {bbox()} */}
 
         <div
