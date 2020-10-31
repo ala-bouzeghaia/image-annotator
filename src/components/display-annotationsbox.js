@@ -49,8 +49,15 @@ const DisplayAnnotationsBox = () => {
     }; */
 
   const start = (pageX, pageY) => {
-    var startX = pageX - refDiv.current.getBoundingClientRect().left;
-    var startY = pageY - refDiv.current.getBoundingClientRect().top;
+    var startX = pageX; /*-
+       (refDiv.current.getBoundingClientRect().right -
+        refDiv.current.getBoundingClientRect().left) /
+        3 */
+    var startY = pageY; /*-
+       (refDiv.current.getBoundingClientRect().bottom -
+        refDiv.current.getBoundingClientRect().top) /
+        3 */
+
     return { x: startX, y: startY };
   };
 
@@ -66,12 +73,18 @@ const DisplayAnnotationsBox = () => {
   console.log("is down?", isDown);
 
   const onMouseMove = (e) => {
-    const offsetX = refDiv.current.getBoundingClientRect().left;
-    const offsetY = refDiv.current.getBoundingClientRect().top;
+    const offsetX =
+      (refDiv.current.getBoundingClientRect().right -
+        refDiv.current.getBoundingClientRect().left) /
+      3;
+    const offsetY =
+      (refDiv.current.getBoundingClientRect().bottom -
+        refDiv.current.getBoundingClientRect().top) /
+      3;
     if (isDown) {
       setCurrentMousePosition({
-        x: e.pageX - offsetX,
-        y: e.pageY - offsetY,
+        x: e.pageX /* - offsetX */,
+        y: e.pageY /* - offsetY */,
       });
       /* bboxRef.current.style.left = startPosition.x;
             bboxRef.current.style.top = startPosition.y;
@@ -94,8 +107,16 @@ const DisplayAnnotationsBox = () => {
     bboxRef.current.style.border = "2px solid rgb(255,0,0)";
     console.log("is up?", isDown);
     setCurrentMousePosition({
-      x: e.pageX - refDiv.current.getBoundingClientRect().left,
-      y: e.pageY - refDiv.current.getBoundingClientRect().top,
+      x:
+        e.pageX /* -
+        (refDiv.current.getBoundingClientRect().right -
+          refDiv.current.getBoundingClientRect().left) /
+          3 */,
+      y:
+        e.pageY /* -
+        (refDiv.current.getBoundingClientRect().bottom -
+          refDiv.current.getBoundingClientRect().top) /
+          3 */,
     });
 
     var left = bboxRef.current.style.left;
@@ -106,6 +127,10 @@ const DisplayAnnotationsBox = () => {
       ...bboxes,
       { left: left, top: top, width: width, height: height },
     ]);
+  };
+
+  const handleClear = () => {
+    setBboxes([]);
   };
 
   useEffect(() => {
@@ -164,10 +189,12 @@ const DisplayAnnotationsBox = () => {
                             
     }; */
   console.log("bboxes", bboxes);
+
   return (
-    <div ref={refDiv}>
+    <div>
       <h5>Images to annotate: </h5>
-      <div style={{ height: "400px" }}>
+
+      <div ref={refDiv} style={{ height: "400px" }}>
         {/*  {bbox()} */}
 
         <div
@@ -198,10 +225,7 @@ const DisplayAnnotationsBox = () => {
       </div>
 
       <div id="annotator_buttons_left">
-        <input
-          className="btn btn-danger"
-          value="Reset" /* onClick={handleClear} */
-        />
+        <input className="btn btn-danger" value="Reset" onClick={handleClear} />
       </div>
 
       <div id="annotator_buttons_right">
