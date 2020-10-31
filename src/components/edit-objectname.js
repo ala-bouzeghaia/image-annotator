@@ -52,7 +52,7 @@ const EditObjectName = () => {
         value="+"
         className="btn btn-primary"
         onClick={onSubmit}
-        style={{ position: "right" }}
+        /* style={{ position: "right" }} */
       />
       <br />
       {RenderObj()}
