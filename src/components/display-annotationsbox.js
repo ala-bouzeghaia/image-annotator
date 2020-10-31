@@ -192,10 +192,13 @@ const DisplayAnnotationsBox = () => {
 
   return (
     <div>
-      <h5>Images to annotate: </h5>
-
-      <div ref={refDiv} style={{ height: "400px" }}>
-        {/*  {bbox()} */}
+      {/* <h5>Images to annotate: </h5> */}
+      <div ref={refDiv} style={{ marginTop: "10px", marginBottom: "20px" }}>
+        <img
+          src={process.env.PUBLIC_URL + "./cat-dog.jpg"}
+          alt=""
+          style={{ height: "100%", width: "100%" }}
+        />
 
         <div
           ref={bboxRef}
