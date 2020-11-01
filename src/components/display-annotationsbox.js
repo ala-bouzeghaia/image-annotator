@@ -1,4 +1,3 @@
-import { PromiseProvider } from "mongoose";
 import React, { useState, useEffect, useRef } from "react";
 
 const DisplayAnnotationsBox = () => {
@@ -74,14 +73,14 @@ const DisplayAnnotationsBox = () => {
   console.log("is down?", isDown);
 
   const onMouseMove = (e) => {
-    const offsetX =
+    /* const offsetX =
       (refDiv.current.getBoundingClientRect().right -
         refDiv.current.getBoundingClientRect().left) /
       3;
     const offsetY =
       (refDiv.current.getBoundingClientRect().bottom -
         refDiv.current.getBoundingClientRect().top) /
-      3;
+      3; */
     if (isDown) {
       setCurrentMousePosition({
         x: e.pageX /* - offsetX */,
@@ -124,10 +123,13 @@ const DisplayAnnotationsBox = () => {
     var top = bboxRef.current.style.top;
     var width = bboxRef.current.style.width;
     var height = bboxRef.current.style.height;
-    setBboxes([
-      ...bboxes,
-      { left: left, top: top, width: width, height: height },
-    ]);
+
+    if (left !== "" && width !== "0px") {
+      setBboxes([
+        ...bboxes,
+        { left: left, top: top, width: width, height: height },
+      ]);
+    }
   };
 
   const handleClear = () => {
@@ -208,7 +210,8 @@ const DisplayAnnotationsBox = () => {
             document.getElementById("image") == null
               ? {}
               : left > document.getElementById("image").offsetLeft &&
-                left < document.getElementById("image").offsetWidth
+                left < document.getElementById("image").offsetWidth &&
+                top < document.getElementById("image").offsetHeight + 10
               ? /*&&
                  left + width < document.getElementById("image").offsetWidth && 
                 top < document.getElementById("image").offsetHeight + 20 &&
