@@ -1,3 +1,4 @@
+import { PromiseProvider } from "mongoose";
 import React, { useState, useEffect, useRef } from "react";
 
 const DisplayAnnotationsBox = () => {
@@ -197,18 +198,30 @@ const DisplayAnnotationsBox = () => {
         <img
           src={process.env.PUBLIC_URL + "./cat-dog.jpg"}
           alt=""
+          id="image"
           style={{ height: "100%", width: "100%" }}
         />
 
         <div
           ref={bboxRef}
-          style={{
-            left: `${left}px`,
-            top: `${top}px`,
-            width: `${width}px`,
-            height: `${height}px`,
-            position: "absolute",
-          }}
+          style={
+            document.getElementById("image") == null
+              ? {}
+              : left > document.getElementById("image").offsetLeft &&
+                left < document.getElementById("image").offsetWidth
+              ? /*&&
+                 left + width < document.getElementById("image").offsetWidth && 
+                top < document.getElementById("image").offsetHeight + 20 &&
+                top > document.getElementById("image").offsetTop*/
+                {
+                  left: `${left}px`,
+                  top: `${top}px`,
+                  width: `${width}px`,
+                  height: `${height}px`,
+                  position: "absolute",
+                }
+              : {}
+          }
         ></div>
 
         {bboxes.map((bb) => {
