@@ -41,7 +41,7 @@ const EditObjectName = () => {
       <input
         type="text"
         required
-        placeholder="Type the name of the object to detect"
+        placeholder="Add object name"
         size="8"
         className="text_input"
         value={objectname}
@@ -52,7 +52,7 @@ const EditObjectName = () => {
         value="+"
         className="btn btn-primary"
         onClick={onSubmit}
-        /* style={{ position: "right" }} */
+        /* style={{ marginTop: "-4px", marginLeft: "2px" }} */
       />
       <br />
       {RenderObj()}
