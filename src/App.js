@@ -7,30 +7,33 @@ import EditObjectName from "./components/edit-objectname";
 import ImagesList from "./components/images-list";
 import AnnotationsList from "./components/annotations-list";
 import DisplayAnnotationsBox from "./components/display-annotationsbox";
+import { BboxesProvider } from "./components/bboxesContext";
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
-        <div className="grid-container">
-          <div id="right_bar">
-            <ul className="nav nav-sidebar">
-              <EditObjectName />
-            </ul>
-            <ul className="nav nav-sidebar">
-              <ImagesList />
-            </ul>
-          </div>
-          <div>
-            <DisplayAnnotationsBox />
-          </div>
+      <BboxesProvider>
+        <div>
+          <Navbar />
+          <div className="grid-container">
+            <div id="right_bar">
+              <ul className="nav nav-sidebar">
+                <EditObjectName />
+              </ul>
+              <ul className="nav nav-sidebar">
+                <ImagesList />
+              </ul>
+            </div>
+            <div>
+              <DisplayAnnotationsBox />
+            </div>
 
-          <div id="right_bar">
-            <AnnotationsList />
+            <div id="right_bar">
+              <AnnotationsList />
+            </div>
           </div>
         </div>
-      </div>
+      </BboxesProvider>
     </Router>
   );
 }
