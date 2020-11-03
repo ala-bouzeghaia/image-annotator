@@ -81,7 +81,15 @@ const DisplayAnnotationsBox = () => {
 
   return (
     <div>
-      <div ref={refDiv} style={{ marginTop: "10px", marginBottom: "20px" }}>
+      <div
+        ref={refDiv}
+        style={{
+          marginTop: "10px",
+          marginBottom: "20px",
+          marginLeft: "10px",
+          marginRight: "10px",
+        }}
+      >
         <img
           src={process.env.PUBLIC_URL + "./cat-dog.jpg"}
           alt=""
@@ -110,16 +118,32 @@ const DisplayAnnotationsBox = () => {
 
         {bboxes.map((bb) => {
           return (
-            <div
-              style={{
-                left: `${bb.left}`,
-                top: `${bb.top}`,
-                width: `${bb.width}`,
-                height: `${bb.height}`,
-                position: "absolute",
-                border: "2px solid rgb(255,0,0)",
-              }}
-            ></div>
+            <div>
+              <div
+                style={{
+                  left: `${bb.left}`,
+                  top: `${bb.top}`,
+                  width: `${bb.width}`,
+                  height: `${bb.height}`,
+                  position: "absolute",
+                  border: "2px solid rgb(255,0,0)",
+                }}
+              ></div>
+              <button
+                className="close-button"
+                style={{
+                  top: `${parseInt(bb.top, 10) - 8}px`,
+                  left: `${
+                    parseInt(bb.left, 10) + parseInt(bb.width, 10) - 8
+                  }px`,
+                  width: "16px",
+                  height: "0px",
+                }}
+                onClick={() => {
+                  bboxes.splice(bboxes.indexOf(bb), 1);
+                }}
+              />
+            </div>
           );
         })}
       </div>
