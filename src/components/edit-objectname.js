@@ -49,10 +49,15 @@ const EditObjectName = () => {
         value={objectname}
         onChange={onChangeObjectname}
       />
-      <input
+      <button
         type="submit"
         value="+"
         className="btn btn-primary"
+        style={{
+          height: "30px",
+          marginBottom: "4px",
+          position: "absolute",
+        }}
         onClick={onSubmit}
       />
       <br />
