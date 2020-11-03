@@ -9,8 +9,8 @@ const AnnotationsList = () => {
       {bboxes.map((bb) => {
         return (
           <p>
-            [Left: {bb.left}, Top: {bb.top} , Width: {bb.width}, Height:{" "}
-            {bb.height}]
+            [<b>Left:</b> {bb.left}, <b>Top:</b> {bb.top} , <b>Width:</b>{" "}
+            {bb.width}, <b>Height:</b> {bb.height}]
           </p>
         );
       })}
