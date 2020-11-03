@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { BboxesContext } from "./bboxesContext";
 
 const DisplayAnnotationsBox = () => {
   const [currentMousePosition, setCurrentMousePosition] = useState({
@@ -7,7 +8,7 @@ const DisplayAnnotationsBox = () => {
   });
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const [isDown, setIsDown] = useState(false);
-  const [bboxes, setBboxes] = useState([]);
+  const [bboxes, setBboxes] = useContext(BboxesContext);
   const refDiv = useRef();
   const bboxRef = useRef();
 
@@ -59,6 +60,10 @@ const DisplayAnnotationsBox = () => {
 
   const handleClear = () => {
     setBboxes([]);
+  };
+
+  const handleClearOneBox = (box) => {
+    setBboxes(bboxes.filter((bbox) => bbox !== box));
   };
 
   useEffect(() => {
@@ -140,7 +145,7 @@ const DisplayAnnotationsBox = () => {
                   height: "0px",
                 }}
                 onClick={() => {
-                  bboxes.splice(bboxes.indexOf(bb), 1);
+                  handleClearOneBox(bb);
                 }}
               />
             </div>
