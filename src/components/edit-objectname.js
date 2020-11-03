@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { BboxesContext } from "./bboxesContext";
 
 const EditObjectName = () => {
   const [objectname, setObjectname] = useState("");
-  const [objects, setObjects] = useState([]);
+  const { boxes, objectNames } = useContext(BboxesContext);
+  const [objects, setObjects] = objectNames;
 
   const onChangeObjectname = (e) => {
     setObjectname(e.target.value);
   };
 
-  const RenderObj = () => {
+  /* const RenderObj = () => {
     return objects.map((obj) => {
       return (
         <div className="radio">
@@ -26,7 +28,7 @@ const EditObjectName = () => {
         </div>
       );
     });
-  };
+  }; */
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ const EditObjectName = () => {
 
     setObjectname("");
   };
-
+  //console.log("OBJECTS", objects);
   return (
     <div id="object_types" style={{ width: "100%" }}>
       <h5>Objects:</h5>
@@ -52,10 +54,20 @@ const EditObjectName = () => {
         value="+"
         className="btn btn-primary"
         onClick={onSubmit}
-        /* style={{ marginTop: "-4px", marginLeft: "2px" }} */
       />
       <br />
-      {RenderObj()}
+      {objects.map((obj) => {
+        return (
+          <div className="radio">
+            <input type="radio" name="optionsRadios" id={obj} checked />
+            <label className="label_radio" for={obj} id="object_name">
+              {" "}
+              {obj}{" "}
+            </label>
+            <br />
+          </div>
+        );
+      })}
     </div>
   );
 };
