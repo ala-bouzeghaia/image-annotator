@@ -8,7 +8,8 @@ const DisplayAnnotationsBox = () => {
   });
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const [isDown, setIsDown] = useState(false);
-  const [bboxes, setBboxes] = useContext(BboxesContext);
+  const { boxes, objectNames } = useContext(BboxesContext);
+  const [bboxes, setBboxes] = boxes;
   const refDiv = useRef();
   const bboxRef = useRef();
 
@@ -81,8 +82,6 @@ const DisplayAnnotationsBox = () => {
   const top = Math.min(currentMousePosition.y, startPosition.y);
   const width = Math.abs(currentMousePosition.x - startPosition.x);
   const height = Math.abs(currentMousePosition.y - startPosition.y);
-
-  console.log("bboxes", bboxes);
 
   return (
     <div>
