@@ -24,7 +24,7 @@ const AnnotationsList = () => {
               parseInt(document.getElementById("image").offsetLeft)}
             , <b>Top:</b>{" "}
             {parseInt(bb.top) -
-              parseInt(document.getElementById("image").offsetTop)}{" "}
+              parseInt(document.getElementById("image").offsetTop)}
             , <b>Width:</b> {parseInt(bb.width)}, <b>Height:</b>{" "}
             {parseInt(bb.height)}]
           </p>
