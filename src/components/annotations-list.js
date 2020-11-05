@@ -19,8 +19,14 @@ const AnnotationsList = () => {
                 ? `${obj}`
                 : "";
             })}
-            [<b>Left:</b> {bb.left}, <b>Top:</b> {bb.top} , <b>Width:</b>{" "}
-            {bb.width}, <b>Height:</b> {bb.height}]
+            [<b>Left:</b>{" "}
+            {parseInt(bb.left) -
+              parseInt(document.getElementById("image").offsetLeft)}
+            , <b>Top:</b>{" "}
+            {parseInt(bb.top) -
+              parseInt(document.getElementById("image").offsetTop)}{" "}
+            , <b>Width:</b> {parseInt(bb.width)}, <b>Height:</b>{" "}
+            {parseInt(bb.height)}]
           </p>
         );
       })}
