@@ -54,7 +54,12 @@ const DisplayAnnotationsBox = () => {
     if (left !== "" && width !== "0px") {
       setBboxes([
         ...bboxes,
-        { left: left, top: top, width: width, height: height },
+        {
+          left: left,
+          top: top,
+          width: width,
+          height: height,
+        },
       ]);
     }
   };
@@ -136,10 +141,8 @@ const DisplayAnnotationsBox = () => {
               <button
                 className="close-button"
                 style={{
-                  top: `${parseInt(bb.top, 10) - 8}px`,
-                  left: `${
-                    parseInt(bb.left, 10) + parseInt(bb.width, 10) - 8
-                  }px`,
+                  top: `${parseInt(bb.top) - 8}px`,
+                  left: `${parseInt(bb.left) + parseInt(bb.width) - 8}px`,
                   width: "16px",
                   height: "0px",
                 }}
