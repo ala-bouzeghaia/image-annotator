@@ -47,6 +47,8 @@ const DisplayAnnotationsBox = () => {
     });
 
     var left = bboxRef.current.style.left;
+    /* parseInt(bboxRef.current.style.left) -
+      document.getElementById("image").offsetLeft; */
     var top = bboxRef.current.style.top;
     var width = bboxRef.current.style.width;
     var height = bboxRef.current.style.height;
@@ -57,7 +59,7 @@ const DisplayAnnotationsBox = () => {
         {
           left: left,
           top: top,
-          width: width,
+          width: width /* `${Math.round((parseInt(width) * 100) / window.innerWidth)}%` */,
           height: height,
         },
       ]);
@@ -87,7 +89,7 @@ const DisplayAnnotationsBox = () => {
   const top = Math.min(currentMousePosition.y, startPosition.y);
   const width = Math.abs(currentMousePosition.x - startPosition.x);
   const height = Math.abs(currentMousePosition.y - startPosition.y);
-
+  console.log("BBOXES", bboxes);
   return (
     <div>
       <div
