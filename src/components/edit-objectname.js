@@ -33,7 +33,6 @@ const EditObjectName = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setObjects([...objects, objectname]);
-
     setObjectname("");
   };
   //console.log("OBJECTS", objects);
@@ -51,20 +50,32 @@ const EditObjectName = () => {
       />
       <button
         /* type="submit" */
-        content="+"
+        /* content="+" */
         className="btn btn-primary"
         style={{
           height: "30px",
+          width:
+            "2.5vw" /*
           marginBottom: "4px",
+           marginTop: "0px", ,*/,
           position: "absolute",
+          /* paddingTop: "0px",
+          paddingBottom: "0px",
+          paddingRight: "5px",
+          paddingLeft: "5px",*/
+          fontSize: "40px",
+          color: "red",
         }}
         onClick={onSubmit}
-      />
+      >
+        +
+      </button>
+
       <br />
       {objects.map((obj) => {
         return (
           <div className="radio">
-            <input type="radio" name="optionsRadios" id={obj} checked />
+            <input type="radio" name="optionsRadios" id={obj} />
             <label className="label_radio" for={obj} id="object_name">
               {" "}
               {obj}{" "}
