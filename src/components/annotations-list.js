@@ -5,11 +5,12 @@ const AnnotationsList = () => {
   const { boxes, objectNames } = useContext(BboxesContext);
   const [bboxes, setBboxes] = boxes;
   const [objects, setObjects] = objectNames;
-  console.log(objects);
+  //console.log(objects);
+  console.log(bboxes);
   return (
     <div id="annotated_box">
       <h5>Annotations: </h5>
-      {bboxes.map((bb) => {
+      {/* bboxes.map((bb) => {
         return (
           <p>
             {objects.map((obj) => {
@@ -19,7 +20,7 @@ const AnnotationsList = () => {
                 ? `${obj}`
                 : "";
             })}
-            [<b>Left:</b>{" "}
+            <br />[<b>Left:</b>{" "}
             {parseInt(bb.left) -
               parseInt(document.getElementById("image").offsetLeft)}
             , <b>Top:</b>{" "}
@@ -29,7 +30,21 @@ const AnnotationsList = () => {
             {parseInt(bb.height)}]
           </p>
         );
-      })}
+      }) */}
+      {/* {bboxes === [] ? (
+        {}
+      ) : (
+        <p>
+          [<b>Left:</b>{" "}
+          {parseInt(bboxes[0].left) -
+            parseInt(document.getElementById("image").offsetLeft)}
+          , <b>Top:</b>{" "}
+          {parseInt(bboxes[0].top) -
+            parseInt(document.getElementById("image").offsetTop)}
+          , <b>Width:</b> {parseInt(bboxes[0].width)}, <b>Height:</b>{" "}
+          {parseInt(bboxes[0].height)}]
+        </p>
+      )} */}
     </div>
   );
 };
