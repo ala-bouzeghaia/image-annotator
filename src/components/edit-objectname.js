@@ -56,17 +56,8 @@ const EditObjectName = () => {
         className="btn btn-primary"
         style={{
           height: "30px",
-          width:
-            "2.5vw" /*
-          marginBottom: "4px",
-           marginTop: "0px", ,*/,
+          width: "2.5vw",
           position: "absolute",
-          /* paddingTop: "0px",
-          paddingBottom: "0px",
-          paddingRight: "5px",
-          paddingLeft: "5px",
-          fontSize: "40px",
-          color: "red",*/
         }}
         onClick={onSubmit}
       >
