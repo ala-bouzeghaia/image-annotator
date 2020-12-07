@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import Icon from "@mdi/react";
+import { mdiPlus } from "@mdi/js";
 import { BboxesContext } from "./bboxesContext";
 
 const EditObjectName = () => {
@@ -62,13 +64,21 @@ const EditObjectName = () => {
           /* paddingTop: "0px",
           paddingBottom: "0px",
           paddingRight: "5px",
-          paddingLeft: "5px",*/
+          paddingLeft: "5px",
           fontSize: "40px",
-          color: "red",
+          color: "red",*/
         }}
         onClick={onSubmit}
       >
-        +
+        <Icon
+          path={mdiPlus}
+          style={{
+            height: "30px",
+            width: "2.5vw",
+            marginLeft: "-12",
+            marginTop: "-12",
+          }}
+        />
       </button>
 
       <br />
