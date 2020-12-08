@@ -1,42 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 #object_types {
   border: 1px solid #eee;
   background-color: white;
@@ -87,9 +48,19 @@
 #annotator_buttons_left {
   float: left;
 }
+/*.radio {
+  white-space: nowrap;
+}*/
 
-.label_radio {
-  margin-left: 10px;
+.radio input[type="radio"] {
+  margin-right: 10px;
+}
+
+.radio label {
+  /*display: block;
+  background-color: red;
+  padding-left: 10px;*/
+  padding-top: 0px;
 }
 
 .text_input {
@@ -110,12 +81,7 @@
   color: #fff;
   background-color: #030;
   border: 2px solid #fff;
-  -moz-border-radius: 18px;
-  -webkit-border-radius: 18px;
   border-radius: 18px;
   cursor: pointer;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
   text-align: center;
 }
