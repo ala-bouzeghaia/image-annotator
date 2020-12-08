@@ -7,6 +7,7 @@ const EditObjectName = () => {
   const [objectname, setObjectname] = useState("");
   const { boxes, objectNames } = useContext(BboxesContext);
   const [objects, setObjects] = objectNames;
+  const [bboxes, setBboxes] = boxes;
 
   const onChangeObjectname = (e) => {
     setObjectname(e.target.value);
@@ -34,10 +35,29 @@ const EditObjectName = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    //setObjects(prev => prev.fill({...prev[i], value},i,i+1))
     setObjects([...objects, objectname]);
     setObjectname("");
   };
-  //console.log("OBJECTS", objects);
+  console.log("OBJECTS", objects);
+
+  const radiosChecked = document.querySelectorAll('input[name="radio"]');
+  console.log(radiosChecked);
+  const len = bboxes.length - 1;
+  /* var i = 0;
+    i < radiosChecked.length;
+    i++ */
+  for (const radioChecked of radiosChecked) {
+    if (radioChecked.checked) {
+      const selectedValue = radioChecked.value; //objects[objects.length - 1];
+      //console.log(selectedValue);
+      setBboxes((prev) =>
+        prev.fill({ ...prev[len], name: selectedValue }, len, len + 1)
+      );
+    }
+  }
+
   return (
     <div id="object_types" style={{ width: "100%" }}>
       <h5>Objects:</h5>
@@ -75,11 +95,11 @@ const EditObjectName = () => {
         return (
           <div className="radio">
             <label
-              for={obj}
-              /*className="label_radio"              
+            /* for={obj} */
+            /*className="label_radio"              
               id="object_name"*/
             >
-              <input type="radio" name="radio" id={obj} />
+              <input type="radio" name="radio" id={obj} value={obj} />
               {obj}
             </label>
             <br />
