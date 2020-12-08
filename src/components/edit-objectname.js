@@ -51,8 +51,6 @@ const EditObjectName = () => {
         onChange={onChangeObjectname}
       />
       <button
-        /* type="submit" */
-        /* content="+" */
         className="btn btn-primary"
         style={{
           height: "30px",
@@ -76,10 +74,13 @@ const EditObjectName = () => {
       {objects.map((obj) => {
         return (
           <div className="radio">
-            <input type="radio" name="optionsRadios" id={obj} />
-            <label className="label_radio" for={obj} id="object_name">
-              {" "}
-              {obj}{" "}
+            <label
+              for={obj}
+              /*className="label_radio"              
+              id="object_name"*/
+            >
+              <input type="radio" name="radio" id={obj} />
+              {obj}
             </label>
             <br />
           </div>
