@@ -6,20 +6,22 @@ const AnnotationsList = () => {
   const [bboxes, setBboxes] = boxes;
   const [objects, setObjects] = objectNames;
   //console.log(objects);
-  console.log(bboxes);
+  //console.log(bboxes);
   return (
     <div id="annotated_box">
       <h5>Annotations: </h5>
-      {/* bboxes.map((bb) => {
-        return (
-          <p>
-            {objects.map((obj) => {
+      {bboxes.map((bb) => {
+        return;
+
+        {
+          /*<p>
+             {objects.map((obj) => {
               return document.getElementById(`${obj}`) === null
                 ? ""
                 : document.getElementById(`${obj}`).checked
                 ? `${obj}`
                 : "";
-            })}
+            })} 
             <br />[<b>Left:</b>{" "}
             {parseInt(bb.left) -
               parseInt(document.getElementById("image").offsetLeft)}
@@ -28,9 +30,9 @@ const AnnotationsList = () => {
               parseInt(document.getElementById("image").offsetTop)}
             , <b>Width:</b> {parseInt(bb.width)}, <b>Height:</b>{" "}
             {parseInt(bb.height)}]
-          </p>
-        );
-      }) */}
+          </p>*/
+        }
+      })}
       {/* {bboxes === [] ? (
         {}
       ) : (
