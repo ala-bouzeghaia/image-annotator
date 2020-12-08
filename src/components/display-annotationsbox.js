@@ -39,19 +39,20 @@ const DisplayAnnotationsBox = () => {
 
   const onMouseUp = (e) => {
     setIsDown(false);
-    bboxRef.current.style.border = "2px solid rgb(255,0,0)";
+    bboxRef.current.style.display = "none";
 
     setCurrentMousePosition({
       x: e.pageX,
       y: e.pageY,
     });
 
-    var left = bboxRef.current.style.left;
-    /* parseInt(bboxRef.current.style.left) -
-      document.getElementById("image").offsetLeft; */
-    var top = bboxRef.current.style.top;
-    var width = bboxRef.current.style.width;
-    var height = bboxRef.current.style.height;
+    /* var left = bboxRef.current.style.left; */
+    var left = parseInt(bboxRef.current.style.left);
+    /* - document.getElementById("image").offsetLeft; */
+    var top = parseInt(bboxRef.current.style.top);
+    var width = parseInt(bboxRef.current.style.width);
+    var height = parseInt(bboxRef.current.style.height);
+    console.log("LEFT/WINDOW", (left * 100) / window.innerWidth);
 
     if (left !== "" && width !== "0px") {
       setBboxes([
@@ -72,16 +73,38 @@ const DisplayAnnotationsBox = () => {
 
   const handleClearOneBox = (box) => {
     setBboxes(bboxes.filter((bbox) => bbox !== box));
+    document.getElementById("close-button").style.display = "none";
   };
 
+  /* const updateDisplay = (event) => {
+    var pageX = document.getElementById("x");
+    var pageY = document.getElementById("y");
+    pageX.innerText = event.offsetX;
+    pageY.innerText = event.offsetY;
+  }; */
+
   useEffect(() => {
+    /*var image = document.getElementById("image");
+    var divId = document.getElementById("divid");
+     var pageX = document.getElementById("x");
+    var pageY = document.getElementById("y"); */
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("mouseenter", onMouseMove);
+    window.addEventListener("mouseleave", onMouseMove);
+    /*image.addEventListener("mousemove", updateDisplay, false);
+    image.addEventListener("mouseenter", updateDisplay, false);
+    image.addEventListener("mouseleave", updateDisplay, false);*/
     return () => {
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("mouseenter", onMouseMove);
+      window.removeEventListener("mouseleave", onMouseMove);
+      /*image.removeEventListener("mousemove", updateDisplay, false);
+      image.removeEventListener("mouseenter", updateDisplay, false);
+      image.removeEventListener("mouseleave", updateDisplay, false);*/
     };
   });
 
@@ -129,32 +152,38 @@ const DisplayAnnotationsBox = () => {
 
         {bboxes.map((bb) => {
           return (
-            <div>
-              <div
-                style={{
-                  left: `${bb.left}`,
-                  top: `${bb.top}`,
-                  width: `${bb.width}`,
-                  height: `${bb.height}`,
-                  position: "absolute",
-                  border: "2px solid rgb(255,0,0)",
-                }}
-              ></div>
+            <div
+              style={{
+                left: `${(bb.left * 100) / window.innerWidth}vw`,
+                top: `${(bb.top * 100) / window.innerHeight}vh`,
+                width: `${(bb.width * 100) / window.innerWidth}vw`,
+                height: `${(bb.height * 100) / window.innerHeight}vh`,
+                position: "absolute",
+                border: "2px solid rgb(255,0,0)",
+              }}
+            >
               <button
                 className="close-button"
+                id="close-button"
                 style={{
-                  top: `${parseInt(bb.top) - 8}px`,
-                  left: `${parseInt(bb.left) + parseInt(bb.width) - 8}px`,
+                  top: `${-10}px`,
+                  left: "95%" /* `${bb.width - 10}px` */,
                   width: "16px",
                   height: "0px",
                 }}
                 onClick={() => {
                   handleClearOneBox(bb);
                 }}
-              />
+              ></button>
             </div>
           );
         })}
+        <p>
+          <code>pageX</code>: <span id="x">n/a</span>
+        </p>
+        <p>
+          <code>pageY</code>: <span id="y">n/a</span>
+        </p>
       </div>
 
       <div id="annotator_buttons_left">
