@@ -52,9 +52,14 @@ const DisplayAnnotationsBox = () => {
     var top = parseInt(bboxRef.current.style.top);
     var width = parseInt(bboxRef.current.style.width);
     var height = parseInt(bboxRef.current.style.height);
-    console.log("LEFT/WINDOW", (left * 100) / window.innerWidth);
 
-    if (left !== "" && width !== "0px") {
+    if (
+      /* left > document.getElementById("image").offsetLeft &&
+      left < document.getElementById("image").offsetWidth &&
+      top < document.getElementById("image").offsetHeight + 10 && */
+      left !== "" &&
+      width !== "0px"
+    ) {
       setBboxes([
         ...bboxes,
         {
@@ -65,6 +70,7 @@ const DisplayAnnotationsBox = () => {
         },
       ]);
     }
+    console.log("BBOXES", bboxes);
   };
 
   const handleClear = () => {
@@ -84,27 +90,14 @@ const DisplayAnnotationsBox = () => {
   }; */
 
   useEffect(() => {
-    /*var image = document.getElementById("image");
-    var divId = document.getElementById("divid");
-     var pageX = document.getElementById("x");
-    var pageY = document.getElementById("y"); */
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("mouseenter", onMouseMove);
-    window.addEventListener("mouseleave", onMouseMove);
-    /*image.addEventListener("mousemove", updateDisplay, false);
-    image.addEventListener("mouseenter", updateDisplay, false);
-    image.addEventListener("mouseleave", updateDisplay, false);*/
+
     return () => {
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("mouseenter", onMouseMove);
-      window.removeEventListener("mouseleave", onMouseMove);
-      /*image.removeEventListener("mousemove", updateDisplay, false);
-      image.removeEventListener("mouseenter", updateDisplay, false);
-      image.removeEventListener("mouseleave", updateDisplay, false);*/
     };
   });
 
@@ -112,7 +105,7 @@ const DisplayAnnotationsBox = () => {
   const top = Math.min(currentMousePosition.y, startPosition.y);
   const width = Math.abs(currentMousePosition.x - startPosition.x);
   const height = Math.abs(currentMousePosition.y - startPosition.y);
-  console.log("BBOXES", bboxes);
+  //console.log("BBOXES", bboxes);
   return (
     <div>
       <div
@@ -161,6 +154,7 @@ const DisplayAnnotationsBox = () => {
                 position: "absolute",
                 border: "2px solid rgb(255,0,0)",
               }}
+              key={bboxes.indexOf(bb)}
             >
               <button
                 className="close-button"
@@ -178,20 +172,19 @@ const DisplayAnnotationsBox = () => {
             </div>
           );
         })}
-        <p>
-          <code>pageX</code>: <span id="x">n/a</span>
-        </p>
-        <p>
-          <code>pageY</code>: <span id="y">n/a</span>
-        </p>
       </div>
 
       <div id="annotator_buttons_left">
-        <input className="btn btn-danger" value="Reset" onClick={handleClear} />
+        <input
+          className="btn btn-danger"
+          value="Reset"
+          onClick={handleClear}
+          onChange={() => {}}
+        />
       </div>
 
       <div id="annotator_buttons_right">
-        <input className="btn btn-primary" value="Submit" />
+        <input className="btn btn-primary" value="Submit" onChange={() => {}} />
       </div>
     </div>
   );
