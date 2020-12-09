@@ -22,6 +22,7 @@ const DisplayAnnotationsBox = () => {
   const onMouseDown = (e) => {
     setIsDown(true);
     setStartPosition(start(e.pageX, e.pageY));
+    bboxRef.current.style.opacity = 1;
     bboxRef.current.style.border = "2px dotted rgb(255,0,0)";
     bboxRef.current.style.cursor = "crosshair";
     bboxRef.current.style.width = "0px";
@@ -39,7 +40,7 @@ const DisplayAnnotationsBox = () => {
 
   const onMouseUp = (e) => {
     setIsDown(false);
-    bboxRef.current.style.display = "none";
+    bboxRef.current.style.opacity = 0;
 
     setCurrentMousePosition({
       x: e.pageX,
@@ -58,7 +59,7 @@ const DisplayAnnotationsBox = () => {
       left < document.getElementById("image").offsetWidth &&
       top < document.getElementById("image").offsetHeight + 10 && */
       left !== "" &&
-      width !== "0px"
+      width > 5
     ) {
       setBboxes([
         ...bboxes,
@@ -70,8 +71,9 @@ const DisplayAnnotationsBox = () => {
         },
       ]);
     }
-    console.log("BBOXES", bboxes);
   };
+
+  console.log("BBOXES", bboxes);
 
   const handleClear = () => {
     setBboxes([]);
@@ -79,7 +81,9 @@ const DisplayAnnotationsBox = () => {
 
   const handleClearOneBox = (box) => {
     setBboxes(bboxes.filter((bbox) => bbox !== box));
-    document.getElementById("close-button").style.display = "none";
+    document.getElementById(
+      `close-button ${bboxes.indexOf(box)}`
+    ).style.display = "none";
   };
 
   /* const updateDisplay = (event) => {
@@ -158,10 +162,10 @@ const DisplayAnnotationsBox = () => {
             >
               <button
                 className="close-button"
-                id="close-button"
+                id={`close-button ${bboxes.indexOf(bb)}`}
                 style={{
-                  top: `${-10}px`,
-                  left: "95%" /* `${bb.width - 10}px` */,
+                  top: "-10px",
+                  left: "90%" /* `${bb.width - 10}px` */,
                   width: "16px",
                   height: "0px",
                 }}
