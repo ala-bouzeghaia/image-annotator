@@ -11,42 +11,19 @@ const AnnotationsList = () => {
     <div id="annotated_box">
       <h5>Annotations: </h5>
       {bboxes.map((bb) => {
-        return;
-
-        {
-          /*<p>
-             {objects.map((obj) => {
-              return document.getElementById(`${obj}`) === null
-                ? ""
-                : document.getElementById(`${obj}`).checked
-                ? `${obj}`
-                : "";
-            })} 
-            <br />[<b>Left:</b>{" "}
-            {parseInt(bb.left) -
-              parseInt(document.getElementById("image").offsetLeft)}
-            , <b>Top:</b>{" "}
-            {parseInt(bb.top) -
-              parseInt(document.getElementById("image").offsetTop)}
-            , <b>Width:</b> {parseInt(bb.width)}, <b>Height:</b>{" "}
-            {parseInt(bb.height)}]
-          </p>*/
-        }
+        return (
+          <p>
+            <b>name: </b>
+            {bb.name ? bb.name : ""} <br />
+            <b>left: </b>
+            {bb.left -
+              parseInt(document.getElementById("image").offsetLeft)},{" "}
+            <b>top: </b>{" "}
+            {bb.top - parseInt(document.getElementById("image").offsetTop)},{" "}
+            <b>width: </b> {bb.width}, <b>height: </b> {bb.height}
+          </p>
+        );
       })}
-      {/* {bboxes === [] ? (
-        {}
-      ) : (
-        <p>
-          [<b>Left:</b>{" "}
-          {parseInt(bboxes[0].left) -
-            parseInt(document.getElementById("image").offsetLeft)}
-          , <b>Top:</b>{" "}
-          {parseInt(bboxes[0].top) -
-            parseInt(document.getElementById("image").offsetTop)}
-          , <b>Width:</b> {parseInt(bboxes[0].width)}, <b>Height:</b>{" "}
-          {parseInt(bboxes[0].height)}]
-        </p>
-      )} */}
     </div>
   );
 };
