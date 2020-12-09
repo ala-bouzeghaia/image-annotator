@@ -13,26 +13,6 @@ const EditObjectName = () => {
     setObjectname(e.target.value);
   };
 
-  /* const RenderObj = () => {
-    return objects.map((obj) => {
-      return (
-        <div className="radio">
-          <input
-            type="radio"
-            name="optionsRadios"
-            id="optionsRadios1"
-            checked
-          />
-          <label className="label_radio" for="optionsRadios1">
-            {" "}
-            {obj}{" "}
-          </label>
-          <br />
-        </div>
-      );
-    });
-  }; */
-
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -45,13 +25,10 @@ const EditObjectName = () => {
   const radiosChecked = document.querySelectorAll('input[name="radio"]');
   console.log(radiosChecked);
   const len = bboxes.length - 1;
-  /* var i = 0;
-    i < radiosChecked.length;
-    i++ */
+
   for (const radioChecked of radiosChecked) {
     if (radioChecked.checked) {
-      const selectedValue = radioChecked.value; //objects[objects.length - 1];
-      //console.log(selectedValue);
+      const selectedValue = radioChecked.value;
       setBboxes((prev) =>
         prev.fill({ ...prev[len], name: selectedValue }, len, len + 1)
       );
