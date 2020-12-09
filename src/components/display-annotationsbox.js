@@ -149,25 +149,30 @@ const DisplayAnnotationsBox = () => {
 
         {bboxes.map((bb) => {
           return (
-            <div
-              style={{
-                left: `${(bb.left * 100) / window.innerWidth}vw`,
-                top: `${(bb.top * 100) / window.innerHeight}vh`,
-                width: `${(bb.width * 100) / window.innerWidth}vw`,
-                height: `${(bb.height * 100) / window.innerHeight}vh`,
-                position: "absolute",
-                border: "2px solid rgb(255,0,0)",
-              }}
-              key={bboxes.indexOf(bb)}
-            >
+            <div>
+              <div
+                style={{
+                  left: `${(bb.left * 100) / window.innerWidth}vw`,
+                  top: `${(bb.top * 100) / window.innerHeight}vh`,
+                  width: `${(bb.width * 100) / window.innerWidth}vw`,
+                  height: `${(bb.height * 100) / window.innerHeight}vh`,
+                  position: "absolute",
+                  border: "2px solid rgb(255,0,0)",
+                }}
+                key={bboxes.indexOf(bb)}
+              >
+                <span style={{ color: "red" }}>
+                  {bb.name === undefined ? "" : bb.name}{" "}
+                </span>
+              </div>
               <button
                 className="close-button"
                 id={`close-button ${bboxes.indexOf(bb)}`}
                 style={{
-                  top: "-10px",
-                  left: "90%" /* `${bb.width - 10}px` */,
+                  top: `${bb.top - 10}px`,
+                  left: `${bb.left + bb.width - 10}px` /*"90%"*/,
                   width: "16px",
-                  height: "0px",
+                  height: "16px",
                 }}
                 onClick={() => {
                   handleClearOneBox(bb);
