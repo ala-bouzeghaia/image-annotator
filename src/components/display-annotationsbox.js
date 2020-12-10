@@ -8,6 +8,7 @@ const DisplayAnnotationsBox = () => {
   });
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const [isDown, setIsDown] = useState(false);
+  // eslint-disable-next-line
   const { boxes, objectNames } = useContext(BboxesContext);
   const [bboxes, setBboxes] = boxes;
   const refDiv = useRef();
