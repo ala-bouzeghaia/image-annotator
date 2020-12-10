@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { BboxesContext } from "./bboxesContext";
 
 const AnnotationsList = () => {
+  // eslint-disable-next-line
   const { boxes, objectNames } = useContext(BboxesContext);
+  // eslint-disable-next-line
   const [bboxes, setBboxes] = boxes;
-  const [objects, setObjects] = objectNames;
-  //console.log(objects);
-  //console.log(bboxes);
+
   return (
     <div id="annotated_box">
       <h5>Annotations: </h5>
