@@ -16,13 +16,12 @@ const EditObjectName = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    //setObjects(prev => prev.fill({...prev[i], value},i,i+1))
     setObjects([...objects, objectname]);
     setObjectname("");
   };
   console.log("OBJECTS", objects);
 
-  const radiosChecked = document.querySelectorAll('input[name="radio"]');
+  /* const radiosChecked = document.querySelectorAll('input[name="radio"]');
   console.log(radiosChecked);
   const len = bboxes.length - 1;
 
@@ -33,7 +32,7 @@ const EditObjectName = () => {
         prev.fill({ ...prev[len], name: selectedValue }, len, len + 1)
       );
     }
-  }
+  } */
 
   return (
     <div id="object_types" style={{ width: "100%" }}>
@@ -70,7 +69,7 @@ const EditObjectName = () => {
       <br />
       {objects.map((obj) => {
         return (
-          <div className="radio">
+          <div className="radio" key={objects.indexOf(obj)}>
             <label
             /* for={obj} */
             /*className="label_radio"              
