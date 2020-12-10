@@ -56,7 +56,6 @@ const DisplayAnnotationsBox = () => {
 
     const radiosChecked = document.querySelectorAll('input[name="radio"]');
     console.log(radiosChecked);
-    const len = bboxes.length - 1;
     for (const radioChecked of radiosChecked) {
       if (radioChecked.checked) {
         const selectedValue = radioChecked.value;
