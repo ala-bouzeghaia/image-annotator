@@ -54,22 +54,25 @@ const DisplayAnnotationsBox = () => {
     var width = parseInt(bboxRef.current.style.width);
     var height = parseInt(bboxRef.current.style.height);
 
-    if (
-      /* left > document.getElementById("image").offsetLeft &&
-      left < document.getElementById("image").offsetWidth &&
-      top < document.getElementById("image").offsetHeight + 10 && */
-      left !== "" &&
-      width > 5
-    ) {
-      setBboxes([
-        ...bboxes,
-        {
-          left: left,
-          top: top,
-          width: width /* `${Math.round((parseInt(width) * 100) / window.innerWidth)}%` */,
-          height: height,
-        },
-      ]);
+    const radiosChecked = document.querySelectorAll('input[name="radio"]');
+    console.log(radiosChecked);
+    const len = bboxes.length - 1;
+    for (const radioChecked of radiosChecked) {
+      if (radioChecked.checked) {
+        const selectedValue = radioChecked.value;
+        if (left !== "" && width > 5) {
+          setBboxes([
+            ...bboxes,
+            {
+              left: left,
+              top: top,
+              width: width /* `${Math.round((parseInt(width) * 100) / window.innerWidth)}%` */,
+              height: height,
+              name: selectedValue,
+            },
+          ]);
+        }
+      }
     }
   };
 
