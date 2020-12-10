@@ -5,9 +5,9 @@ import { BboxesContext } from "./bboxesContext";
 
 const EditObjectName = () => {
   const [objectname, setObjectname] = useState("");
+  // eslint-disable-next-line
   const { boxes, objectNames } = useContext(BboxesContext);
   const [objects, setObjects] = objectNames;
-  const [bboxes, setBboxes] = boxes;
 
   const onChangeObjectname = (e) => {
     setObjectname(e.target.value);
