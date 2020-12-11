@@ -106,20 +106,20 @@
   outline: none;
 }
 .annotation-close-button {
-  display: none;
+  opacity: 0;
 }
 .annotation-item:hover {
   border: 2px dotted #030;
 }
 .annotation-item:hover .annotation-close-button {
-  display: inline-block;
+  opacity: 1;
   padding: 16px 16px 0 0;
   color: #fff;
   background-color: #030;
   border: 2px solid #fff;
   border-radius: 18px;
   cursor: pointer;
-  text-align: center;
+  /* text-align: center; */
 }
 .annotation-close-button:before,
 .annotation-close-button:after {
