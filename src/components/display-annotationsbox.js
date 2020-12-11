@@ -83,10 +83,14 @@ const DisplayAnnotationsBox = () => {
   };
 
   const handleClearOneBox = (box) => {
-    setBboxes(bboxes.filter((bbox) => bbox !== box));
-    document.getElementById(
-      `close-button ${bboxes.indexOf(box)}`
-    ).style.display = "none";
+    setBboxes(
+      bboxes.filter((bbox) => bbox !== box),
+      (box) => {
+        document.getElementById(
+          `close-button-${bboxes.indexOf(box)}`
+        ).style.display = "none";
+      }
+    );
   };
 
   /* const updateDisplay = (event) => {
@@ -170,7 +174,7 @@ const DisplayAnnotationsBox = () => {
               </div>
               <button
                 className="close-button"
-                id={`close-button ${bboxes.indexOf(bb)}`}
+                id={`close-button-${bboxes.indexOf(bb)}`}
                 style={{
                   top: `${bb.top - 10}px`,
                   left: `${bb.left + bb.width - 10}px` /*"90%"*/,
